@@ -11,7 +11,7 @@ services:
       - cart-service
       - payment-service
     environment:
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://52.23.211.13:4317
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://3.86.240.124:4317
       - OTEL_SERVICE_NAME=nginx
 
   items-service:
@@ -20,7 +20,7 @@ services:
     ports:
       - "5001:5001"
     environment:
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://52.23.211.13:4317
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://3.86.240.124:4317
       - OTEL_SERVICE_NAME=items
 
   cart-service:
@@ -29,7 +29,7 @@ services:
     ports:
       - "5002:5002"
     environment:
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://52.23.211.13:4317
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://3.86.240.124:4317
       - OTEL_SERVICE_NAME=cart
 
   payment-service:
@@ -38,7 +38,7 @@ services:
     ports:
       - "5003:5003"
     environment:
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://52.23.211.13:4317
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://3.86.240.124:4317
       - OTEL_SERVICE_NAME=payment
 
   mysql-db:
