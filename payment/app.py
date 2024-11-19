@@ -20,12 +20,12 @@ def make_payment():
     time.sleep(5)
 
     # Trigger the notification service
-    try:
-        response = requests.get("http://notification-service:5004/notify")
-        if response.status_code != 200:
-            return jsonify({"error": "Notification failed"}), 500
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    # try:
+    #     response = requests.get("http://notification-service:5004/notify")
+    #     if response.status_code != 200:
+    #         return jsonify({"error": "Notification failed"}), 500
+    # except Exception as e:
+    #     return jsonify({"error": str(e)}), 500
 
     # Return success response
     return jsonify({"status": "success", "transaction_id": "txn_12345"})
