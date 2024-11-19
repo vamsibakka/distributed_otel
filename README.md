@@ -26,3 +26,30 @@ THE RELEASE VERISION IS webserver/v1.1.0.
 
 **TESTING**
 * NOW OPEN ANY WEBBROWSER AND RAISE A HTTP REQUEST `http://<ip-of-nginx>/items` THIS SHOULD GIVE THE SUCCESS RESPONSE AND `http://<ip-of -nginx>/items?id=1` THIS SHOULD GIVE YOU THE ERROR RESPONSE.
+----
+  **OPENTELEMETRY VERSIONS INSTALLED**
+
+opentelemetry-api                        1.28.1
+opentelemetry-distro                     0.49b1
+opentelemetry-exporter-otlp              1.28.1
+opentelemetry-exporter-otlp-proto-common 1.28.1
+opentelemetry-exporter-otlp-proto-grpc   1.28.1
+opentelemetry-exporter-otlp-proto-http   1.28.1
+opentelemetry-instrumentation            0.49b1
+opentelemetry-instrumentation-asyncio    0.49b1
+opentelemetry-instrumentation-dbapi      0.49b1
+opentelemetry-instrumentation-flask      0.49b1
+opentelemetry-instrumentation-grpc       0.49b1
+opentelemetry-instrumentation-jinja2     0.49b1
+opentelemetry-instrumentation-logging    0.49b1
+opentelemetry-instrumentation-mysql      0.49b1
+opentelemetry-instrumentation-requests   0.49b1
+opentelemetry-instrumentation-sqlite3    0.49b1
+opentelemetry-instrumentation-threading  0.49b1
+opentelemetry-instrumentation-urllib     0.49b1
+opentelemetry-instrumentation-urllib3    0.49b1
+opentelemetry-instrumentation-wsgi       0.49b1
+opentelemetry-proto                      1.28.1
+opentelemetry-sdk                        1.28.1
+opentelemetry-semantic-conventions       0.49b1
+opentelemetry-util-http                  0.49b1
