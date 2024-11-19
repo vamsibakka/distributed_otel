@@ -1,18 +1,20 @@
 version: '3.8'
 
 services:
-  nginx:
-    build:
-      context: ./nginx
-    ports:
-      - "8080:80"
-    depends_on:
-      - items-service
-      - cart-service
-      - payment-service
-    environment:
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://3.86.240.124:4317
-      - OTEL_SERVICE_NAME=nginx
+  # nginx:
+  #   build:
+  #     context: ./nginx
+  #   ports:
+  #     - "8080:80"
+  #   depends_on:
+  #     - items-service
+  #     - cart-service
+  #     - payment-service
+  #   environment:
+  #     - OTEL_EXPORTER_OTLP_ENDPOINT=http://ip-address-otel-collector:4317
+  #     - OTEL_SERVICE_NAME=nginx
+  #     - OTEL_EXPORTER_OTLP_INSECURE=true
+  #     - OTEL_LOGS_EXPORTER=otlp
 
   items-service:
     build:
@@ -20,8 +22,10 @@ services:
     ports:
       - "5001:5001"
     environment:
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://3.86.240.124:4317
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://ip-address-otel-collector:4317
       - OTEL_SERVICE_NAME=items
+      - OTEL_EXPORTER_OTLP_INSECURE=true
+      - OTEL_LOGS_EXPORTER=otlp
 
   cart-service:
     build:
@@ -29,8 +33,10 @@ services:
     ports:
       - "5002:5002"
     environment:
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://3.86.240.124:4317
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://ip-address-otel-collector:4317
       - OTEL_SERVICE_NAME=cart
+      - OTEL_EXPORTER_OTLP_INSECURE=true
+      - OTEL_LOGS_EXPORTER=otlp
 
   payment-service:
     build:
@@ -38,9 +44,20 @@ services:
     ports:
       - "5003:5003"
     environment:
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://3.86.240.124:4317
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://ip-address-otel-collector5:4317
       - OTEL_SERVICE_NAME=payment
-
+      - OTEL_EXPORTER_OTLP_INSECURE=true
+      - OTEL_LOGS_EXPORTER=otlp
+  notification-service:
+    build:
+      context: ./notify
+    ports:
+      - "5004:5004"
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://ip-address-otel-collector:4317
+      - OTEL_SERVICE_NAME=notification
+      - OTEL_EXPORTER_OTLP_INSECURE=true
+      - OTEL_LOGS_EXPORTER=otlp
   mysql-db:
     image: mysql:latest
     environment:
@@ -49,18 +66,4 @@ services:
       - ./db:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
-
-  # tempo:
-  #   image: grafana/tempo:latest
-  #   ports:
-  #     - "4317:4317"  # OTLP gRPC endpoint for OpenTelemetry
-  #     - "3200:3200"  # Tempo UI
-
-  # grafana:
-  #   image: grafana/grafana:latest
-  #   ports:
-  #     - "3000:3000"
-  #   environment:
-  #     - GF_SECURITY_ADMIN_PASSWORD=admin
-  #   depends_on:
-  #     - tempo
+  
