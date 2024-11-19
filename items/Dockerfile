@@ -4,12 +4,15 @@ WORKDIR /app
 
 RUN pip install --upgrade pip
 COPY . /app
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt && \
+    opentelemetry-bootstrap -a install
 
 # OpenTelemetry environment variables for zero-code instrumentation
-ENV OTEL_EXPORTER_OTLP_ENDPOINT="http://3.86.240.124:4317"
-ENV OTEL_SERVICE_NAME="items" 
+ENV OTEL_EXPORTER_OTLP_ENDPOINT="http://ip-address-otel-collector:4317"
+ENV OTEL_SERVICE_NAME="items"
+ENV OTEL_EXPORTER_OTLP_INSECURE=true
+ENV OTEL_LOGS_EXPORTER=otlp
 
-EXPOSE 5001  
+EXPOSE 5001
 
 CMD ["opentelemetry-instrument", "python", "app.py"]
