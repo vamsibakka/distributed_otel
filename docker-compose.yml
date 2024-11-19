@@ -1,21 +1,6 @@
 version: '3.8'
 
 services:
-  # nginx:
-  #   build:
-  #     context: ./nginx
-  #   ports:
-  #     - "8080:80"
-  #   depends_on:
-  #     - items-service
-  #     - cart-service
-  #     - payment-service
-  #   environment:
-  #     - OTEL_EXPORTER_OTLP_ENDPOINT=http://ip-address-otel-collector:4317
-  #     - OTEL_SERVICE_NAME=nginx
-  #     - OTEL_EXPORTER_OTLP_INSECURE=true
-  #     - OTEL_LOGS_EXPORTER=otlp
-
   items-service:
     build:
       context: ./items
@@ -48,16 +33,16 @@ services:
       - OTEL_SERVICE_NAME=payment
       - OTEL_EXPORTER_OTLP_INSECURE=true
       - OTEL_LOGS_EXPORTER=otlp
-  notification-service:
-    build:
-      context: ./notify
-    ports:
-      - "5004:5004"
-    environment:
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://ip-address-otel-collector:4317
-      - OTEL_SERVICE_NAME=notification
-      - OTEL_EXPORTER_OTLP_INSECURE=true
-      - OTEL_LOGS_EXPORTER=otlp
+  # notification-service:
+  #   build:
+  #     context: ./notify
+  #   ports:
+  #     - "5004:5004"
+  #   environment:
+  #     - OTEL_EXPORTER_OTLP_ENDPOINT=http://ip-address-otel-collector:4317
+  #     - OTEL_SERVICE_NAME=notification
+  #     - OTEL_EXPORTER_OTLP_INSECURE=true
+  #     - OTEL_LOGS_EXPORTER=otlp
   mysql-db:
     image: mysql:latest
     environment:
